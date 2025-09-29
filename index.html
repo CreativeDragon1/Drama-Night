@@ -512,10 +512,11 @@
         }
 
         .members-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 2rem;
             justify-content: center;
+            /* center each row of cards */
         }
 
         .member-card {
@@ -527,6 +528,9 @@
             position: relative;
             opacity: 0;
             transform: translateY(40px) scale(0.95);
+            flex: 0 1 calc(33.333% - 2rem);
+            max-width: calc(33.333% - 2rem);
+
         }
 
         .member-card.animated {
@@ -805,7 +809,7 @@
                 </div>
                 <div class="info-card">
                     <div class="info-label">Venue</div>
-                    <div class="info-value">OWIS Quantum Arena</div>
+                    <div class="info-value">TBD</div>
                 </div>
             </div>
         </div>
