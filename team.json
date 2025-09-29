@@ -1,0 +1,37 @@
+{
+  "Design and Marketing": [
+    { "name": "PURVAA PRAKASH", "image": "images/Raahi.png" },
+    { "name": "AMRIT NARAYAN", "image": "images/Raahi.png" }
+  ],
+  "Stage Manager": [
+    { "name": "SURAJ", "image": "images/Raahi.png" },
+    { "name": "SADHIL SAHU", "image": "images/Raahi.png" }
+  ],
+  "Finance and Logistics": [
+    { "name": "SREE YUVAN MS", "image": "images/Raahi.png" },
+    { "name": "SARANIK MALLICK", "image": "images/Raahi.png" },
+    { "name": "ARYAN", "image": "images/Raahi.png" }
+  ],
+  "Event Management": [
+    { "name": "SHREYA SOMAN", "image": "images/Raahi.png" },
+    { "name": "MAAHI SINGH", "image": "images/Raahi.png" },
+    { "name": "KARAN SHARMA", "image": "images/Raahi.png" }
+  ],
+  "Sound and Lighting Managers": [
+    { "name": "RAAHI", "image": "images/Raahi.png" },
+    { "name": "KANISHK", "image": "images/kanishk.png" }
+  ],
+  "Props Managers": [
+    { "name": "SHAMBHAVI", "image": "images/Raahi.png" },
+    { "name": "ASHMITHA", "image": "images/Raahi.png" }
+  ],
+  "Playwrights": [
+    { "name": "ROHIT", "image": "images/Raahi.png" },
+    { "name": "SONAKSHI", "image": "images/Raahi.png" }
+  ],
+  "Costume Managers": [
+    { "name": "VIDUSHI", "image": "images/Raahi.png" },
+    { "name": "NAVANEETH", "image": "images/Raahi.png" },
+    { "name": "ADWAIT", "image": "images/Raahi.png" }
+  ]
+}
