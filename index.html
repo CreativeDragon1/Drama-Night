@@ -35,12 +35,39 @@
         }
 
         body {
-            font-family: Inter, system-ui, Segoe UI, Roboto, -apple-system, Arial;
             margin: 0;
-            background: linear-gradient(180deg, var(--bg), #071026);
-            color: #e9eef9;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden
+            font-family: Inter, system-ui, Segoe UI, Roboto, -apple-system, Arial;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* Twinkling stars */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+            animation: twinkle 200s linear infinite;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        body {
+            background: black !important;
+        }
+
+        @keyframes twinkle {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: -10000px 5000px;
+            }
         }
 
         .wrap {
@@ -237,7 +264,10 @@
             animation: zoomIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
             animation-delay: 0.3s;
-            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+            border: 3px solid transparent;
+            border-radius: 1rem;
+            /* box-shadow: 0 0 15px rgba(255, 0, 128, 0.7); */
+            transition: all 0.3s ease;
         }
 
         .poster img {
@@ -247,9 +277,16 @@
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .poster:hover img {
+        .poster:hover {
+            box-shadow: 0 10px 10px rgba(255, 0, 128, 0.4);
             transform: scale(1.05);
         }
+
+        .poster:hover img {
+            transform: scale(1.02);
+        }
+
+
 
         .section {
             margin-top: 48px;
@@ -300,30 +337,45 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
+            width: 100%;
         }
 
         .dept-header h3 {
-            font-size: 1.4rem;
             margin: 0;
+            font-size: 2rem;
+            font-weight: 800;
             background: linear-gradient(90deg, var(--accent1), var(--accent2));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 800;
+            white-space: nowrap;
+            padding: 0 12px;
+            margin-bottom: 25px;
+            /* creates breathing room so the lines stop at the text */
+        }
+
+        .dept-header::before {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent1));
+            opacity: 0.32;
+            margin-right: 6px;
         }
 
         .dept-line {
             flex: 1;
             height: 2px;
+            opacity: 0.32;
             background: linear-gradient(90deg, var(--accent1), transparent);
-            opacity: 0.3;
+            margin-left: 6px;
         }
 
         .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
         }
 
         .member {
@@ -760,8 +812,8 @@
             </div>
             <nav>
                 <a href="#about">About</a>
-                <a href="#team">Team</a>
                 <a href="#charity">Charity</a>
+                <a href="#team">Team</a>
                 <a id="calBtn" class="btn cta">Add to Google Calendar</a>
             </nav>
         </header>
@@ -796,7 +848,7 @@
                             <h4
                                 style="margin:0;color:var(--accent1);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase">
                                 Tickets</h4>
-                            <p style="margin:8px 0 0;font-weight:700">Free entry / RSVP required</p>
+                            <p style="margin:8px 0 0;font-weight:700">15 SGD</p>
                         </div>
                     </div>
                 </div>
@@ -827,10 +879,6 @@
                     </div>
                 </div>
             </section>
-            <section id="team" class="section">
-                <h2 style="margin-bottom: 32px;">Organising Team</h2>
-                <div id="teamContainer"></div>
-            </section>
             <section id="charity" class="section">
                 <h2>Charitable Partner</h2>
                 <div class="card">
@@ -839,6 +887,10 @@
                     <a href="https://www.instagram.com/giisdramanight2025?__pwa=1#" target="_blank"
                         class="btn btn-ghost">Instagram</a>
                 </div>
+            </section>
+            <section id="team" class="section">
+                <h2 style="margin-bottom: 32px;">Organising Team</h2>
+                <div id="teamContainer"></div>
             </section>
         </main>
         <footer class="footer">© 2025 Drama Night • Developed by Raahi Chheda</footer>
@@ -861,6 +913,21 @@
         </div>
     </div>
     <script>
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const header = document.querySelector('header');
+                    const offset = (header ? header.offsetHeight : 0) + 30; // header height + 10px
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+        ;
+
         // Title animation
         const heroTitle = document.getElementById('heroTitle');
         const titleText = 'My Fair Lady — Remix';
@@ -912,51 +979,67 @@
             }
         });
 
-        fetch('team.json').then(r => r.json()).then(data => {
-            let memberIndex = 0;
+        fetch('team.json')
+            .then(r => r.json())
+            .then(data => {
+                let memberIndex = 0;
 
-            Object.entries(data).forEach(([department, members]) => {
-                const deptSection = document.createElement('div');
-                deptSection.className = 'department';
+                Object.entries(data).forEach(([department, members]) => {
+                    // Department wrapper
+                    const deptSection = document.createElement('div');
+                    deptSection.className = 'department';
 
-                const deptHeader = document.createElement('div');
-                deptHeader.className = 'dept-header';
-                deptHeader.innerHTML = `
-                    <h3>${department}</h3>
-                    <div class="dept-line"></div>
-                `;
+                    // Department header with line
+                    const deptHeader = document.createElement('div');
+                    deptHeader.className = 'dept-header';
+                    deptHeader.innerHTML = `
+        <h3>${department}</h3>
+        <div class="dept-line"></div>
+      `;
 
-                const teamGrid = document.createElement('div');
-                teamGrid.className = 'team-grid';
+                    // Grid for team members
+                    const teamGrid = document.createElement('div');
+                    teamGrid.className = 'team-grid';
 
-                members.forEach((member) => {
-                    const el = document.createElement('div');
-                    el.className = 'member';
-                    el.style.animationDelay = (memberIndex * 0.08) + 's';
+                    members.forEach(member => {
+                        const el = document.createElement('div');
+                        el.className = 'member';
+                        el.style.animationDelay = (memberIndex * 0.08) + 's';
 
-                    el.innerHTML = `
-                        <div class="member-image-wrap">
-                            <img loading="lazy" src="${member.image || 'images/avatar-placeholder.png'}" alt="${member.name}">
-                        </div>
-                        <div class="info">
-                            <div class="name">${member.name}</div>
-                            <div class="role">${member.Description || department}</div>
-                            <a class="btn btn-ghost" role="button">View Profile</a>
-                        </div>
-                    `;
+                        el.innerHTML = `
+          <div class="member-image-wrap">
+            <img loading="lazy" src="${member.image || 'images/avatar-placeholder.png'}" alt="${member.name}">
+          </div>
+          <div class="info">
+            <div class="name">${member.name}</div>
+            <div class="role">${member.role || department}</div>
+            <a class="btn btn-ghost" role="button">View Profile</a>
+          </div>
+        `;
 
-                    el.addEventListener('click', () => openModal({ ...member, group: department }));
-                    teamGrid.appendChild(el);
-                    memberIndex++;
+                        // Open modal on click
+                        el.addEventListener('click', () => {
+                            modalName.textContent = member.name || '';
+                            modalRole.textContent = member.role || department || '';
+                            modalImage.src = member.image || 'images/avatar-placeholder.png';
+                            modalBio.textContent = member.Description || 'No bio available.';
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        });
+
+                        teamGrid.appendChild(el);
+                        memberIndex++;
+                    });
+
+                    deptSection.appendChild(deptHeader);
+                    deptSection.appendChild(teamGrid);
+                    teamContainer.appendChild(deptSection);
                 });
-
-                deptSection.appendChild(deptHeader);
-                deptSection.appendChild(teamGrid);
-                teamContainer.appendChild(deptSection);
+            })
+            .catch(() => {
+                teamContainer.innerHTML = '<div style="color:var(--muted);padding:20px;text-align:center">Team information could not be loaded.</div>';
             });
-        }).catch(() => {
-            teamContainer.innerHTML = '<div style="color:var(--muted);padding:20px;text-align:center">Team information could not be loaded.</div>';
-        });
+
 
         document.getElementById('calBtn').addEventListener('click', () => {
             const base = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
