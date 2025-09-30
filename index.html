@@ -204,6 +204,8 @@
             text-align: center;
             position: relative;
             z-index: 1;
+            transform: none !important;
+            opacity: 1 !important;
         }
 
         .hero-badge {
@@ -220,13 +222,6 @@
             margin-bottom: 2rem;
             opacity: 0;
             animation: slideDown 0.8s ease 0.2s forwards;
-        }
-
-        @media (max-width: 768px) {
-            .hero-content {
-                transform: none !important;
-                opacity: 1 !important;
-            }
         }
 
         @keyframes slideDown {
