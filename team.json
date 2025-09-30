@@ -1,7 +1,7 @@
 {
   "Design and Marketing": [
-    { "name": "PURVAA PRAKASH", "image": "images/Raahi.png" },
-    { "name": "AMRIT NARAYAN", "image": "images/Raahi.png" }
+    { "name": "PURVAA PRAKASH", "image": "images/Raahi.png", "Description": "Very  coder" },
+    { "name": "AMRIT NARAYAN", "image": "images/Raahi.png", "Description": "Very good baller"}
   ],
   "Stage Manager": [
     { "name": "SURAJ", "image": "images/Raahi.png" },

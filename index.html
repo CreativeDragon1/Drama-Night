@@ -1,1165 +1,995 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drama Night 2025 | My Fair Lady Remix</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Drama Night 2025 — Remix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0e1a;
-            --bg-secondary: #151b2e;
-            --bg-accent: #1e2842;
-            --text-primary: #e8edf7;
-            --text-secondary: #a8b5cf;
-            --text-muted: #6b7a94;
-            --accent-gold: #f4c542;
-            --accent-purple: #8b5cf6;
-            --accent-light: #a78bfa;
-            --accent-pink: #ec4899;
+            --bg: #060714;
+            --card: #0f1724;
+            --muted: #9aa6c3;
+            --glass: rgba(255, 255, 255, 0.04);
+            --accent1: #f4c542;
+            --accent2: #8b5cf6;
+            --accent3: #ec4899;
+            --radius: 18px;
+            --maxw: 1200px;
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            height: 100%
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: Inter, system-ui, Segoe UI, Roboto, -apple-system, Arial;
+            margin: 0;
+            background: linear-gradient(180deg, var(--bg), #071026);
+            color: #e9eef9;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(244, 197, 66, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Animated gradient orbs */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-purple), transparent);
-            top: -200px;
-            right: -200px;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .orb-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--accent-gold), transparent);
-            bottom: -150px;
-            left: -150px;
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        .orb-3 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, var(--accent-pink), transparent);
-            top: 50%;
-            left: 50%;
-            animation: float 30s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            33% {
-                transform: translate(100px, -100px) scale(1.1);
-            }
-            66% {
-                transform: translate(-100px, 100px) scale(0.9);
-            }
-        }
-
-        .drama-masks {
-            position: fixed;
-            font-size: 300px;
-            opacity: 0.03;
-            z-index: 0;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .mask-2 {
-            top: 100px;
-            left: 20%;
-            animation: floatMask 25s ease-in-out infinite;
-        }
-
-        @keyframes floatMask {
-            0%, 100% {
-                transform: rotate(-15deg) translateY(0px);
-            }
-            50% {
-                transform: rotate(-20deg) translateY(50px);
-            }
-        }
-
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 14, 26, 0.75);
-            backdrop-filter: blur(30px) saturate(180%);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(232, 237, 247, 0.06);
-            transition: all 0.3s ease;
-        }
-
-        .nav.scrolled {
-            padding: 0.7rem 0;
-            background: rgba(10, 14, 26, 0.9);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-content {
-            max-width: 1400px;
+        .wrap {
+            max-width: var(--maxw);
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 28px;
+            position: relative;
+            z-index: 2
+        }
+
+        header {
+            position: sticky;
+            top: 18px;
+            backdrop-filter: blur(12px);
+            background: linear-gradient(180deg, rgba(10, 12, 20, 0.85), rgba(10, 12, 20, 0.65));
+            border-radius: 14px;
+            padding: 10px 14px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 18px;
+            animation: fadeDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            z-index: 100;
         }
 
-        .nav-logo-section {
+        .brand {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 12px
         }
 
-        .nav-logo-images {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .brand img {
+            height: 44px;
+            width: 44px;
+            border-radius: 10px;
+            object-fit: cover;
+            animation: spinIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0
         }
 
-        .nav-logo-images img {
-            height: 40px;
-            width: auto;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .nav-logo-images img:hover {
-            transform: scale(1.1);
-            filter: brightness(1.2);
-        }
-
-        .nav-logo-text {
-            font-size: 1.3rem;
+        .brand h1 {
+            font-size: 1.05rem;
+            margin: 0;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(120deg, var(--accent-gold), var(--accent-light), var(--accent-pink));
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradientShift 5s ease infinite;
+            letter-spacing: -0.6px
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .nav-links {
+        nav {
+            margin-left: auto;
             display: flex;
-            gap: 3rem;
-            list-style: none;
+            gap: 12px;
+            align-items: center
         }
 
-        .nav-links a {
-            color: var(--text-secondary);
+        nav a {
+            color: var(--muted);
             text-decoration: none;
-            font-size: 0.95rem;
+            padding: 8px 12px;
+            border-radius: 10px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
-            padding: 0.5rem 0;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-gold), var(--accent-purple));
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 10rem 2rem 4rem;
-            overflow: hidden;
-        }
-
-        .hero-logos {
-            position: absolute;
-            top: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            z-index: 2;
-            opacity: 0;
-            animation: fadeInDown 1.2s ease 0.3s forwards;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-
-        .hero-logos img {
-            height: 80px;
-            width: auto;
-            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
-            transition: transform 0.4s ease;
-        }
-
-        .hero-logos img:hover {
-            transform: scale(1.15) rotate(5deg);
-        }
-
-        .hero-logo-divider {
-            width: 2px;
-            height: 60px;
-            background: linear-gradient(180deg, transparent, var(--accent-gold), transparent);
-        }
-
-        .hero-content {
-            max-width: 1100px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.6rem 2rem;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(244, 197, 66, 0.2));
-            border: 1px solid rgba(244, 197, 66, 0.4);
-            border-radius: 50px;
-            color: var(--accent-gold);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: slideDown 0.8s ease 0.5s forwards;
-            box-shadow: 0 0 30px rgba(244, 197, 66, 0.2);
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-title {
-            font-size: clamp(4rem, 12vw, 8rem);
-            font-weight: 900;
-            line-height: 0.95;
-            margin-bottom: 1.5rem;
-            letter-spacing: -4px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent-gold) 40%, var(--accent-light) 70%, var(--accent-pink) 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInScale 1s ease 0.7s forwards, gradientShift 8s ease infinite;
-            opacity: 0;
-            text-shadow: 0 0 80px rgba(244, 197, 66, 0.3);
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.3rem, 3vw, 2rem);
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.9s forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .event-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1.1s forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, rgba(21, 27, 46, 0.8), rgba(30, 40, 66, 0.6));
-            padding: 2.5rem 2rem;
-            border-radius: 24px;
-            border: 1px solid rgba(244, 197, 66, 0.15);
-            backdrop-filter: blur(20px);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(244, 197, 66, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .info-card:hover::before {
-            left: 100%;
-        }
-
-        .info-card::after {
+        nav a::before {
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: 24px;
-            padding: 1px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-purple));
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover {
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        nav a:hover::before {
+            opacity: 0.1;
+        }
+
+        .cta {
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: #081226;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            box-shadow: 0 4px 20px rgba(244, 197, 66, 0.3);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 30px rgba(244, 197, 66, 0.5);
+        }
+
+        .cta::before {
+            display: none;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 32px;
+            align-items: center;
+            margin-top: 36px;
+            min-height: 60vh
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border-radius: 20px;
+            padding: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 60px rgba(10, 12, 24, 0.7);
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 6vw, 4rem);
+            line-height: 0.95;
+            margin: 0;
+            background: linear-gradient(120deg, #fff, var(--accent1), var(--accent3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: linear-gradient(90deg, var(--accent1), var(--accent2));
+            font-weight: 900;
+        }
+
+        .hero-title span {
+            display: inline-block;
+            opacity: 0;
+            animation: letterIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-sub {
+            color: var(--muted);
+            margin-top: 12px;
+            font-size: 1.05rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 22px
+        }
+
+        .meta {
+            background: var(--card);
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid var(--glass);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .meta:nth-child(1) {
+            animation-delay: 0.9s;
+        }
+
+        .meta:nth-child(2) {
+            animation-delay: 1.0s;
+        }
+
+        .meta:nth-child(3) {
+            animation-delay: 1.1s;
+        }
+
+        .meta:nth-child(4) {
+            animation-delay: 1.2s;
+        }
+
+        .poster {
+            border-radius: 14px;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent2), rgba(255, 255, 255, 0.02));
+            min-height: 260px;
+            animation: zoomIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.3s;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+
+        .poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .poster:hover img {
+            transform: scale(1.05);
+        }
+
+        .section {
+            margin-top: 48px;
+            opacity: 0;
+            transform: translateY(40px)
+        }
+
+        .section.in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)
+        }
+
+        .lead {
+            color: var(--muted);
+            font-size: 1rem
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 28px
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            padding: 22px;
+            border-radius: 14px;
+            border: 1px solid var(--glass);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .department {
+            margin-bottom: 48px;
+        }
+
+        .department:last-child {
+            margin-bottom: 0;
+        }
+
+        .dept-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .dept-header h3 {
+            font-size: 1.4rem;
+            margin: 0;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .dept-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent1), transparent);
+            opacity: 0.3;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .member {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            animation: memberFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+        }
+
+        .member::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent3));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .member:hover::before {
+            opacity: 1;
+        }
+
+        .member:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
+        }
+
+        .member-image-wrap {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent2), var(--accent1));
+        }
+
+        .member img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .member:hover img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .member .info {
+            padding: 18px;
+            background: linear-gradient(180deg, rgba(15, 23, 36, 0.95), rgba(15, 23, 36, 1));
+        }
+
+        .name {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            background: linear-gradient(90deg, #fff, var(--accent1));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .role {
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-ghost {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-ghost:hover {
+            color: #fff;
+            border-color: var(--accent1);
+            background: rgba(244, 197, 66, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .footer {
+            margin: 56px 0 20px;
+            text-align: center;
+            color: var(--muted);
+            font-weight: 700
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 200;
+            opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .info-card:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 25px 60px rgba(244, 197, 66, 0.2);
-        }
-
-        .info-card:hover::after {
-            opacity: 1;
-        }
-
-        .info-label {
-            color: var(--accent-gold);
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .info-value {
-            color: var(--text-primary);
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .section {
-            padding: 8rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-label {
-            display: inline-block;
-            color: var(--accent-gold);
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            padding-left: 2.5rem;
-            position: relative;
-        }
-
-        .section-label::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 30px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-gold), var(--accent-purple));
-            border-radius: 2px;
-        }
-
-        .section-title {
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 900;
-            letter-spacing: -3px;
-            margin-bottom: 4rem;
-            line-height: 1.1;
-            background: linear-gradient(135deg, var(--text-primary), var(--accent-gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-layout {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 6rem;
-            align-items: start;
-        }
-
-        .about-text {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            line-height: 2;
-        }
-
-        .about-text p {
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-        }
-
-        .about-text.animated p {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .about-text.animated p:nth-child(1) { transition-delay: 0.1s; }
-        .about-text.animated p:nth-child(2) { transition-delay: 0.2s; }
-        .about-text.animated p:nth-child(3) { transition-delay: 0.3s; }
-
-        .about-feature {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(244, 197, 66, 0.15));
-            padding: 3.5rem;
-            border-radius: 32px;
-            border: 2px solid rgba(244, 197, 66, 0.2);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateX(30px);
-            transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-        }
-
-        .about-feature.animated {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .about-feature::after {
-            content: '🎭';
-            position: absolute;
-            font-size: 200px;
-            right: -50px;
-            bottom: -50px;
-            opacity: 0.08;
-            transform: rotate(-15deg);
-        }
-
-        .feature-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, var(--text-primary), var(--accent-gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .feature-text {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .charity-box {
-            background: linear-gradient(135deg, rgba(21, 27, 46, 0.8), rgba(30, 40, 66, 0.5));
-            border: 2px solid rgba(244, 197, 66, 0.2);
-            border-radius: 32px;
-            padding: 5rem 4rem;
-            text-align: center;
-            margin-top: 3rem;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-        }
-
-        .charity-box::before {
-            content: '❤️';
-            position: absolute;
-            font-size: 250px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.04;
-        }
-
-        .charity-title {
-            font-size: 2.5rem;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .charity-text {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-        }
-
-        .team-category {
-            margin-bottom: 6rem;
-        }
-
-        .category-header {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 3rem;
-            padding-bottom: 1rem;
-            border-bottom: 3px solid;
-            border-image: linear-gradient(90deg, var(--accent-gold), var(--accent-purple), transparent) 1;
-            display: inline-block;
-            letter-spacing: -0.5px;
-        }
-
-        .members-grid {
+        .modal.active {
             display: flex;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-            justify-content: center;
-        }
-
-        .member-card {
-            background: rgba(21, 27, 46, 0.6);
-            border-radius: 28px;
-            overflow: hidden;
-            border: 1px solid rgba(244, 197, 66, 0.15);
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            flex: 0 1 calc(33.333% - 2.5rem);
-            max-width: calc(33.333% - 2.5rem);
-            backdrop-filter: blur(10px);
-        }
-
-        .member-card.animated {
             opacity: 1;
-            transform: translateY(0) scale(1);
         }
 
-        .member-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: var(--accent-gold);
-            box-shadow: 0 30px 60px rgba(244, 197, 66, 0.2);
+        .modal-card {
+            width: clamp(320px, 90vw, 700px);
+            background: linear-gradient(135deg, #0a1628, #061024);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            animation: modalIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            max-height: 85vh;
+            overflow-y: auto;
         }
 
-        .member-photo {
-            width: 100%;
-            height: 360px;
-            background: linear-gradient(135deg, var(--bg-accent), var(--accent-purple));
+        .modal-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .modal-image-wrap {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
             overflow: hidden;
+            border: 3px solid var(--accent1);
+            box-shadow: 0 8px 30px rgba(244, 197, 66, 0.4);
+            flex-shrink: 0;
         }
 
-        .member-photo::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
-            animation: shine 5s infinite;
-        }
-
-        @keyframes shine {
-            0%, 100% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-            50% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
-        }
-
-        .member-photo img {
+        .modal-image-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .member-details {
-            padding: 2.5rem 2rem;
-            background: linear-gradient(180deg, rgba(21, 27, 46, 0.9), rgba(10, 14, 26, 0.95));
+        .modal-info {
+            flex: 1;
+            min-width: 200px;
         }
 
-        .member-name {
-            font-size: 1.4rem;
+        #modalName {
             font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        .member-position {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        #google-cal-btn {
-            display: inline-block;
-            margin: 4rem auto 0;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-purple));
-            color: #ffffff;
-            border: none;
-            border-radius: 50px;
-            padding: 1.4rem 3.5rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease 1.3s forwards;
-            box-shadow: 0 15px 40px rgba(244, 197, 66, 0.3);
-            text-transform: uppercase;
-        }
-
-        #google-cal-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(244, 197, 66, 0.4);
-        }
-
-        .contact-wrapper {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(244, 197, 66, 0.12));
-            border-radius: 40px;
-            padding: 7rem 4rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid rgba(244, 197, 66, 0.2);
-            backdrop-filter: blur(20px);
-        }
-
-        .contact-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(244, 197, 66, 0.15) 0%, transparent 70%);
-            animation: rotateGlow 20s linear infinite;
-        }
-
-        @keyframes rotateGlow {
-            to { transform: rotate(360deg); }
-        }
-
-        .contact-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 2rem;
-            letter-spacing: -2px;
-            position: relative;
-            z-index: 1;
-            background: linear-gradient(135deg, var(--text-primary), var(--accent-gold));
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #fff, var(--accent1));
             -webkit-background-clip: text;
             background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
-        .contact-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-btn {
-            padding: 1.4rem 3.5rem;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid rgba(244, 197, 66, 0.3);
-            letter-spacing: 0.5px;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-8px) scale(1.05);
-            border-color: var(--accent-gold);
-            box-shadow: 0 20px 50px rgba(244, 197, 66, 0.3);
-            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
-        }
-
-        footer {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(232, 237, 247, 0.05);
+        #modalRole {
+            color: var(--accent2);
+            font-weight: 600;
             font-size: 1rem;
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 0.5rem;
+        #modalBio {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
-        .hamburger span {
-            width: 30px;
-            height: 3px;
-            background: var(--text-primary);
-            border-radius: 3px;
-            transition: all 0.3s ease;
+        .close {
+            margin-left: auto
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translateY(9px);
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+            transition: transform 0.3s ease-out;
         }
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
+        .orb.o1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent2), transparent);
+            top: -250px;
+            right: -250px;
+            animation: float 20s ease-in-out infinite
         }
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translateY(-9px);
+        .orb.o2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent1), transparent);
+            bottom: -200px;
+            left: -200px;
+            animation: float 25s ease-in-out infinite reverse
         }
 
-        @media (max-width: 1024px) {
-            .hero-logos img {
-                height: 60px;
+        .curtain {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            pointer-events: none;
+            z-index: 1000
+        }
+
+        .curtain .side {
+            flex: 1;
+            background: linear-gradient(90deg, #07060a, #0b0711);
+            transform-origin: left;
+            animation: curtainOpen 1.4s cubic-bezier(0.76, 0, 0.24, 1) forwards
+        }
+
+        .curtain .side.r {
+            transform-origin: right;
+            background: linear-gradient(90deg, #0b0711, #07060a)
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1)
             }
 
-            .about-layout {
-                grid-template-columns: 1fr;
-                gap: 3rem;
+            33% {
+                transform: translate(100px, -100px) scale(1.1)
             }
 
-            .member-card {
-                flex: 0 1 calc(50% - 2.5rem);
-                max-width: calc(50% - 2.5rem);
+            66% {
+                transform: translate(-100px, 100px) scale(0.9)
             }
         }
 
-        @media (max-width: 768px) {
-            .nav-logo-section {
+        @keyframes curtainOpen {
+            0% {
+                transform: scaleX(1)
+            }
+
+            100% {
+                transform: scaleX(0)
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        @keyframes spinIn {
+            from {
+                opacity: 0;
+                transform: rotate(-180deg) scale(0.3)
+            }
+
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1)
+            }
+        }
+
+        @keyframes letterIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0)
+            }
+        }
+
+        @keyframes memberFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1)
+            }
+        }
+
+        @media (max-width:900px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .two-col {
+                grid-template-columns: 1fr
+            }
+
+            .poster {
+                min-height: 180px
+            }
+
+            nav {
+                display: none
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 20px;
+            }
+
+            .modal-card {
+                padding: 24px;
+            }
+
+            .modal-header {
                 flex-direction: column;
-                gap: 0.5rem;
                 align-items: flex-start;
             }
+        }
 
-            .nav-logo-images img {
-                height: 30px;
-            }
-
-            .nav-logo-text {
-                font-size: 1rem;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 90px;
-                right: -100%;
-                flex-direction: column;
-                background: rgba(10, 14, 26, 0.98);
-                backdrop-filter: blur(30px);
-                padding: 3rem 2rem;
-                border-radius: 24px 0 0 24px;
-                border: 1px solid rgba(244, 197, 66, 0.2);
-                border-right: none;
-                transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                gap: 2rem;
-                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hero-logos {
-                top: 100px;
-                gap: 1.5rem;
-            }
-
-            .hero-logos img {
-                height: 50px;
-            }
-
-            .hero {
-                padding-top: 12rem;
-            }
-
-            .event-info-grid {
+        @media (max-width:600px) {
+            .team-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .member-card {
-                flex: 0 1 100%;
-                max-width: 100%;
-            }
-
-            .drama-masks {
-                font-size: 200px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="drama-masks mask-2">🎭</div>
-
-    <nav class="nav" id="navbar">
-        <div class="nav-content">
-            <div class="nav-logo-section">
-                <div class="nav-logo-images">
-                    <img src="images/school.png" alt="School Logo">
-                    <div class="nav-logo-divider"></div>
-                    <img src="images/logo.png" alt="Drama Night Logo">
-                </div>
-                <div class="nav-logo-text">DRAMA NIGHT 2025</div>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#charity">Charity</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">GIIS x Drama Club Presents</div>
-            <h1 class="hero-title">Drama Night<br>2025</h1>
-            <p class="hero-subtitle">
-                A vibrant remix of My Fair Lady performed by talented students.
-            </p>
-            <div class="event-info-grid">
-                <div class="info-card">
-                    <div class="info-label">Date</div>
-                    <div class="info-value">25th October 2025</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Time</div>
-                    <div class="info-value">6:00 PM - 7:30 PM</div>
-                </div>
-                <div class="info-card">
-                    <div class="info-label">Venue</div>
-                    <div class="info-value">TBD</div>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="curtain" aria-hidden="true">
+        <div class="side"></div>
+        <div class="side r"></div>
+    </div>
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <img src="images/logo.png" alt="logo">
+                <div>
+                    <h1>Drama Night 2025</h1>
+                    <div style="color:var(--muted);font-size:0.85rem">GIIS x Drama Club</div>
                 </div>
             </div>
-            <button id="google-cal-btn">
-                Add to Google Calendar
-            </button>
-        </div>
-    </section>
-
-    <section id="about" class="section">
-        <div class="section-label">The Show</div>
-        <h2 class="section-title">About the Event</h2>
-        <div class="about-layout">
-            <div class="about-text" id="aboutText">
-                <p>
-                    Experience a fresh take on the timeless classic "My Fair Lady" as GIIS students bring this beloved
-                    musical to life with their own creative twist. This isn't just a performance—it's a celebration of
-                    talent, dedication, and community spirit.
-                </p>
-                <p>
-                    Through captivating drama, stunning musical performances, and innovative staging, our students will
-                    transport you into a world where language, class, and identity collide in the most entertaining ways
-                    possible.
-                </p>
-                <p>
-                    Join us for an evening of artistry and purpose as we come together to support a meaningful cause
-                    while showcasing the incredible talents of our student performers.
-                </p>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#team">Team</a>
+                <a href="#charity">Charity</a>
+                <a id="calBtn" class="btn cta">Add to Google Calendar</a>
+            </nav>
+        </header>
+        <main>
+            <section class="hero" id="home">
+                <div class="hero-card">
+                    <div>
+                        <h2 class="hero-title" id="heroTitle"></h2>
+                        <p class="hero-sub">A contemporary reimagining by GIIS students blending theatre, music and
+                            movement</p>
+                    </div>
+                    <div class="meta-grid">
+                        <div class="meta">
+                            <h4
+                                style="margin:0;color:var(--accent1);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase">
+                                Date</h4>
+                            <p style="margin:8px 0 0;font-weight:700">25 October 2025</p>
+                        </div>
+                        <div class="meta">
+                            <h4
+                                style="margin:0;color:var(--accent1);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase">
+                                Time</h4>
+                            <p style="margin:8px 0 0;font-weight:700">18:00 — 19:30 (SGT)</p>
+                        </div>
+                        <div class="meta">
+                            <h4
+                                style="margin:0;color:var(--accent1);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase">
+                                Venue</h4>
+                            <p style="margin:8px 0 0;font-weight:700">OWIS Quantum Arena</p>
+                        </div>
+                        <div class="meta">
+                            <h4
+                                style="margin:0;color:var(--accent1);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase">
+                                Tickets</h4>
+                            <p style="margin:8px 0 0;font-weight:700">Free entry / RSVP required</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="poster card"><img src="images/poster.jpg" alt="event poster"></div>
+            </section>
+            <section id="about" class="section">
+                <div class="two-col">
+                    <div>
+                        <h2>About the Event</h2>
+                        <p class="lead">Experience a bold fresh take where language, class and identity are explored
+                            through bold staging and student-led creativity.</p>
+                        <div style="height:16px"></div>
+                        <div class="card">
+                            <h3 style="margin:0 0 8px">Highlights</h3>
+                            <ul style="color:var(--muted);margin:10px 0 0;padding-left:18px">
+                                <li>Original choreography and live music</li>
+                                <li>Inclusive cast drawn from across the school</li>
+                                <li>Post-show Q&amp;A with the production team</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin:0 0 8px">Support the Cause</h3>
+                        <p style="color:var(--muted);margin:0">Proceeds and donations will benefit our chosen charity.
+                            Details to be announced shortly.</p>
+                        <div style="height:12px"></div>
+                        <a href="mailto:giisdramanight@gmail.com" class="btn btn-ghost">Contact Organisers</a>
+                    </div>
+                </div>
+            </section>
+            <section id="team" class="section">
+                <h2 style="margin-bottom: 32px;">Organising Team</h2>
+                <div id="teamContainer"></div>
+            </section>
+            <section id="charity" class="section">
+                <h2>Charitable Partner</h2>
+                <div class="card">
+                    <p style="color:var(--muted);margin:0">Details coming soon. Follow our Instagram for updates:</p>
+                    <div style="height:12px"></div>
+                    <a href="https://www.instagram.com/giisdramanight2025?__pwa=1#" target="_blank"
+                        class="btn btn-ghost">Instagram</a>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">© 2025 Drama Night • Developed by Raahi Chheda</footer>
+    </div>
+    <div id="modal" class="modal" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-image-wrap">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <div id="modalName"></div>
+                    <div id="modalRole"></div>
+                </div>
+                <div class="close">
+                    <a id="closeModal" class="btn btn-ghost">Close</a>
+                </div>
             </div>
-            <div class="about-feature" id="aboutFeature">
-                <h3 class="feature-title">My Fair Lady</h3>
-                <p class="feature-text">
-                    A timeless tale of transformation, ambition, and the power of language, reimagined through the
-                    creative vision of GIIS students.
-                </p>
-            </div>
+            <p id="modalBio"></p>
         </div>
-    </section>
-
-    <section id="charity" class="section">
-        <div class="section-label">Making a Difference</div>
-        <h2 class="section-title">Our Charitable Cause</h2>
-        <div class="charity-box">
-            <h3 class="charity-title">Charity Details Coming Soon</h3>
-            <p class="charity-text">Information about our charitable partner and cause will be announced here.</p>
-        </div>
-    </section>
-
-    <section id="team" class="section">
-        <div class="section-label">Behind the Scenes</div>
-        <h2 class="section-title">Organizing Team</h2>
-        <div id="team-container" class="team-container"></div>
-    </section>
-
-    <section id="contact" class="section">
-        <div class="contact-wrapper">
-            <h2 class="contact-title">Get in Touch</h2>
-            <p class="contact-subtitle">
-                Have questions or want to learn more? Reach out to us through our social media or email.
-            </p>
-            <div class="contact-buttons">
-                <a href="https://www.instagram.com/giisdramanight2025?__pwa=1#" target="_blank" class="contact-btn">
-                    Instagram
-                </a>
-                <a href="mailto:giisdramanight@gmail.com" class="contact-btn">
-                    Email Us
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2025 Drama Night. All rights reserved.</p>
-        <p>Developed by Raahi Chheda</p>
-    </footer>
-
+    </div>
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        const navbar = document.getElementById('navbar');
+        // Title animation
+        const heroTitle = document.getElementById('heroTitle');
+        const titleText = 'My Fair Lady — Remix';
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
+        titleText.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            span.style.animationDelay = (i * 30) + 'ms';
+            heroTitle.appendChild(span);
         });
 
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const sections = document.querySelectorAll('.section');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
                 }
             });
+        }, { threshold: 0.15 });
+        sections.forEach(s => io.observe(s));
+
+        const teamContainer = document.getElementById('teamContainer');
+        const modal = document.getElementById('modal');
+        const modalName = document.getElementById('modalName');
+        const modalRole = document.getElementById('modalRole');
+        const modalImage = document.getElementById('modalImage');
+        const modalBio = document.getElementById('modalBio');
+        const closeModal = document.getElementById('closeModal');
+
+        function openModal(member) {
+            modalName.textContent = member.name || '';
+            modalRole.textContent = member.Description || member.group || '';
+            modalImage.src = member.image || 'images/avatar-placeholder.png';
+            modalBio.textContent = member.Description || 'No bio available.';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
         });
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
 
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        fetch('team.json').then(r => r.json()).then(data => {
+            let memberIndex = 0;
 
-        const aboutObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                }
+            Object.entries(data).forEach(([department, members]) => {
+                const deptSection = document.createElement('div');
+                deptSection.className = 'department';
+
+                const deptHeader = document.createElement('div');
+                deptHeader.className = 'dept-header';
+                deptHeader.innerHTML = `
+                    <h3>${department}</h3>
+                    <div class="dept-line"></div>
+                `;
+
+                const teamGrid = document.createElement('div');
+                teamGrid.className = 'team-grid';
+
+                members.forEach((member) => {
+                    const el = document.createElement('div');
+                    el.className = 'member';
+                    el.style.animationDelay = (memberIndex * 0.08) + 's';
+
+                    el.innerHTML = `
+                        <div class="member-image-wrap">
+                            <img loading="lazy" src="${member.image || 'images/avatar-placeholder.png'}" alt="${member.name}">
+                        </div>
+                        <div class="info">
+                            <div class="name">${member.name}</div>
+                            <div class="role">${member.Description || department}</div>
+                            <a class="btn btn-ghost" role="button">View Profile</a>
+                        </div>
+                    `;
+
+                    el.addEventListener('click', () => openModal({ ...member, group: department }));
+                    teamGrid.appendChild(el);
+                    memberIndex++;
+                });
+
+                deptSection.appendChild(deptHeader);
+                deptSection.appendChild(teamGrid);
+                teamContainer.appendChild(deptSection);
             });
-        }, observerOptions);
+        }).catch(() => {
+            teamContainer.innerHTML = '<div style="color:var(--muted);padding:20px;text-align:center">Team information could not be loaded.</div>';
+        });
 
-        const aboutText = document.getElementById('aboutText');
-        const aboutFeature = document.getElementById('aboutFeature');
-        if (aboutText) aboutObserver.observe(aboutText);
-        if (aboutFeature) aboutObserver.observe(aboutFeature);
-
-        document.getElementById('google-cal-btn').addEventListener('click', () => {
+        document.getElementById('calBtn').addEventListener('click', () => {
             const base = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
-            const title = encodeURIComponent('Drama Night 2025 | My Fair Lady Remix');
-            const dates = '20251025T100000Z/20251025T113000Z';
-            const details = encodeURIComponent(
-                'A vibrant remix of My Fair Lady performed by talented students, blending drama, music, and creativity for a meaningful cause.'
-            );
+            const text = encodeURIComponent('Drama Night 2025 | My Fair Lady Remix');
+            const details = encodeURIComponent('A contemporary student-led production featuring drama, music and choreography');
             const location = encodeURIComponent('OWIS Quantum Arena');
-
-            const url = [
-                base,
-                `&text=${title}`,
-                `&dates=${dates}`,
-                `&details=${details}`,
-                `&location=${location}`
-            ].join('');
-
+            const start = '20251025T100000Z';
+            const end = '20251025T113000Z';
+            const url = `${base}&text=${text}&dates=${start}/${end}&details=${details}&location=${location}`;
             window.open(url, '_blank');
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('team.json')
-                .then(res => res.json())
-                .then(teamData => {
-                    const container = document.querySelector('#team-container');
-                    if (!container) throw new Error('Missing #team-container in HTML');
+        const orbs = document.querySelectorAll('.orb');
+        window.addEventListener('pointermove', (e) => {
+            const cx = window.innerWidth / 2;
+            const cy = window.innerHeight / 2;
+            const dx = (e.clientX - cx) / cx;
+            const dy = (e.clientY - cy) / cy;
+            orbs.forEach((o, i) => {
+                const mul = (i + 1) * 12;
+                o.style.transform = `translate(${dx * mul}px, ${dy * mul}px)`;
+            });
+        });
 
-                    Object.entries(teamData).forEach(([category, members]) => {
-                        const section = document.createElement('div');
-                        section.className = 'team-category';
-
-                        const heading = document.createElement('h3');
-                        heading.className = 'category-header';
-                        heading.textContent = category;
-                        section.appendChild(heading);
-
-                        const grid = document.createElement('div');
-                        grid.className = 'members-grid';
-
-                        members.forEach((member, index) => {
-                            const card = document.createElement('div');
-                            card.className = 'member-card';
-                            
-                            setTimeout(() => {
-                                card.classList.add('animated');
-                            }, index * 100);
-
-                            card.innerHTML = `
-                                <div class="member-photo">
-                                    <img src="${member.image}" alt="${member.name}">
-                                </div>
-                                <div class="member-details">
-                                    <h4 class="member-name">${member.name}</h4>
-                                    <p class="member-position">${category}</p>
-                                </div>
-                            `;
-                            grid.appendChild(card);
-                        });
-
-                        section.appendChild(grid);
-                        container.appendChild(section);
-                    });
-                })
-                .catch(err => {
-                    console.error('Error loading team data:', err);
-                    const fallback = document.querySelector('#team-container');
-                    if (fallback) fallback.innerHTML = '<p style="color:var(--text-secondary)">Failed to load team members.</p>';
-                });
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const curtains = document.querySelectorAll('.curtain .side');
+                curtains.forEach(c => c.style.animation = 'curtainOpen 1.4s cubic-bezier(.76,0,.24,1) forwards');
+                setTimeout(() => {
+                    const cwrap = document.querySelector('.curtain');
+                    if (cwrap) cwrap.style.display = 'none';
+                }, 1600);
+            }, 100);
         });
     </script>
 </body>
