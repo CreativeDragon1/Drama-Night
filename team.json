@@ -1,37 +1,38 @@
 {
+    "Stage Manager": [
+    { "name": "SURAJ", "image": "images/.png" },
+    { "name": "SADHIL SAHU", "image": "images/.png" }
+  ],
   "Design and Marketing": [
-    { "name": "PURVAA PRAKASH", "image": "images/Raahi.png", "Description": "Very  coder" },
-    { "name": "AMRIT NARAYAN", "image": "images/Raahi.png", "Description": "Very good baller"}
+    { "name": "PURVAA PRAKASH", "image": "images/.png", "Description": "Very good coder" },
+    { "name": "AMRIT NARAYAN", "image": "images/.png", "Description": "Very good"}
   ],
-  "Stage Manager": [
-    { "name": "SURAJ", "image": "images/Raahi.png" },
-    { "name": "SADHIL SAHU", "image": "images/Raahi.png" }
-  ],
+
   "Finance and Logistics": [
-    { "name": "SREE YUVAN MS", "image": "images/Raahi.png" },
-    { "name": "SARANIK MALLICK", "image": "images/Raahi.png" },
-    { "name": "ARYAN", "image": "images/Raahi.png" }
+    { "name": "SREE YUVAN MS", "image": "images/.png" },
+    { "name": "SARANIK MALLICK", "image": "images/.png" },
+    { "name": "ARYAN", "image": "images/.png" }
   ],
   "Event Management": [
-    { "name": "SHREYA SOMAN", "image": "images/Raahi.png" },
-    { "name": "MAAHI SINGH", "image": "images/Raahi.png" },
-    { "name": "KARAN SHARMA", "image": "images/Raahi.png" }
+    { "name": "SHREYA SOMAN", "image": "images/.png" },
+    { "name": "MAAHI SINGH", "image": "images/.png" },
+    { "name": "KARAN SHARMA", "image": "images/.png" }
   ],
   "Sound and Lighting Managers": [
-    { "name": "RAAHI", "image": "images/Raahi.png" },
+    { "name": "RAAHI", "image": "images/Raahi.png", "Description": "Hiii, I’m Raahi. I’m a creative and ambitious tech enthusiast, passionate about coding, AI, robotics, and web development. I love building innovative projects, from neural networks to interactive websites. Artistic and detail-oriented, I combine technical skills with creativity, constantly exploring, learning, and pushing boundaries to make ideas come alive." },
     { "name": "KANISHK", "image": "images/kanishk.png" }
   ],
   "Props Managers": [
-    { "name": "SHAMBHAVI", "image": "images/Raahi.png" },
-    { "name": "ASHMITHA", "image": "images/Raahi.png" }
+    { "name": "SHAMBHAVI", "image": "images/.png" },
+    { "name": "ASHMITHA", "image": "images/.png" }
   ],
   "Playwrights": [
-    { "name": "ROHIT", "image": "images/Raahi.png" },
-    { "name": "SONAKSHI", "image": "images/Raahi.png" }
+    { "name": "ROHIT", "image": "images/.png" },
+    { "name": "SONAKSHI", "image": "images/.png" }
   ],
   "Costume Managers": [
-    { "name": "VIDUSHI", "image": "images/Raahi.png" },
-    { "name": "NAVANEETH", "image": "images/Raahi.png" },
-    { "name": "ADWAIT", "image": "images/Raahi.png" }
+    { "name": "VIDUSHI", "image": "images/.png" },
+    { "name": "NAVANEETH", "image": "images/.png" },
+    { "name": "ADWAIT", "image": "images/.png" }
   ]
 }
